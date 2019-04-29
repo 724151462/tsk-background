@@ -1,0 +1,57 @@
+{
+    "name": "backstages",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "serve": "vue-cli-service serve",
+      "build": "vue-cli-service build",
+      "dev": "vue-cli-service build --mode dev",
+      "lint": "vue-cli-service lint"
+    },
+    "dependencies": {
+      "ali-oss": "^6.0.1",
+      "aliyun-oss-upload": "0.0.1",
+      "axios": "^0.18.0",
+      "babel-helper-vue-jsx-merge-props": "^2.0.3",
+      "babel-plugin-syntax-jsx": "^6.18.0",
+      "babel-plugin-transform-vue-jsx": "^3.7.0",
+      "babel-preset-env": "^1.7.0",
+      "blob-polyfill": "^3.0.20180112",
+      "downloadjs": "^1.4.7",
+      "echarts": "^4.2.0-rc.2",
+      "element-ui": "^2.3.6",
+      "file-saver": "^2.0.1",
+      "js-cookie": "^2.2.0",
+      "qs": "^6.5.2",
+      "vue": "^2.5.17",
+      "vue-image-crop-upload": "^2.5.0",
+      "vue-router": "^3.0.1",
+      "vue-socket.io": "^3.0.4",
+      "vue-video-player": "^5.0.2",
+      "vuex": "^3.0.1",
+      "wangeditor": "^3.1.1",
+      "ws": "^6.1.2",
+      "xlsx": "^0.14.1"
+    },
+    "devDependencies": {
+      "@vue/cli-plugin-babel": "^3.0.5",
+      "@vue/cli-plugin-eslint": "^3.0.5",
+      "@vue/cli-plugin-unit-jest": "^3.5.1",
+      "@vue/cli-service": "^3.0.5",
+      "@vue/eslint-config-standard": "^3.0.5",
+      "@vue/test-utils": "^1.0.0-beta.20",
+      "ali-oss": "^6.0.1",
+      "axios": "^0.18.0",
+      "babel-core": "7.0.0-bridge.0",
+      "babel-jest": "^23.0.1",
+      "qs": "^6.5.2",
+      "script-loader": "^0.7.2",
+      "stylus": "^0.54.5",
+      "stylus-loader": "^3.0.2",
+      "vue-cli-plugin-element-ui": "^1.1.4",
+      "vue-cropper": "^0.4.6",
+      "vue-template-compiler": "^2.5.17",
+      "vue-video-player": "^5.0.2"
+    }
+  }
+  
