@@ -41,7 +41,7 @@ function validator(target, validator) {
 
 const personValidators = {
     userName(val) {
-        let reg = /^[0-9]*$/;
+        let reg = /[A-Za-z0-9_\-\u4e00-\u9fa5]+/;
         if(reg.test(val)) {
             return true
         }else{

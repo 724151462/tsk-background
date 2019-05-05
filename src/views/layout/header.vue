@@ -11,9 +11,10 @@
     </div>
     <div class="header">
       <div style="display: flex;flex: 1;max-width: 1920px;margin: 0 auto;">
-        <router-link to="/course" class="login" style="margin-top:10px;text-align:center;">
+        <router-link to="/course" class="login" style="text-align:center;">
           <!-- <img :src="require('@/assets/images/header_logo.png')" height="40px"> -->
-          <span>fdsafas</span>
+          <span style="font-size: 30px">大国微农</span>
+          <span style="margin-left: 10px">后台管理</span>
         </router-link>
         <el-menu
           :default-active="defaultActiveIndex"
@@ -105,7 +106,7 @@ export default {
   data() {
     return {
       defaultActiveIndex: "/course",
-      nav: [],
+      nav: this.$router.options.routes,
       realName: "",
       userAvatar: require("../../assets/images/user.png"),
       menuList: constantRouterMap,
@@ -115,7 +116,7 @@ export default {
     };
   },
   created() {
-    console.log(this.$store.state.allMenu);
+    console.log(this.nav);
     // this.$store.state.allMenu.filter(item => {
     //   if (item.level === 1) {
     //     return item;

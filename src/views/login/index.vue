@@ -20,33 +20,8 @@
           <div style="position: relative;height: 100%">
             <el-form :model="data" ref="data" class="login-box">
               <img :src="require('@/assets/images/logo.png')" class="logo-img" alt>
-              <el-form-item label prop="tenantId">
-                <el-select
-                  filterable
-                  class="input-item"
-                  v-model="searchKey"
-                  :filter-method="schoolInit"
-                  placeholder="请选择学校"
-                >
-                  <el-option
-                    v-for="item in schoolList"
-                    :key="item.tenantId"
-                    :label="item.tenantName"
-                    :value="item.tenantName"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
               <el-form-item label prop="userName">
                 <el-input placeholder="工号/电话号码" v-model="data.userName" class="input-item"></el-input>
-              </el-form-item>
-              <el-form-item label prop="password" style="margin-bottom: 10px">
-                <el-input
-                  type="password"
-                  placeholder="密码"
-                  v-model="data.password"
-                  class="input-item"
-                  @keyup.native.enter="goLogin"
-                ></el-input>
               </el-form-item>
               <el-form-item style="margin-bottom: 0">
                 <div class="input-item" style="text-align: left">
@@ -178,17 +153,17 @@
 </template>
 
 <script>
-// import { logins, loginDebug, getTenant } from "@/api/login";
+import { logins, loginDebug, getTenant } from "@/api/login";
 // import { sysUserMenuList } from "@/api/system";
-// import Person from '@/utils/validate'
-// import {
-//   setToken,
-//   getToken,
-//   twoWeeksExchange,
-//   twoWeeksGetExchange,
-//   saveUserInfo
-// } from "@/utils/auth";
-// import { getErrorMsg } from "@/utils/utils";
+import Person from '@/utils/validate'
+import {
+  setToken,
+  getToken,
+  twoWeeksExchange,
+  twoWeeksGetExchange,
+  saveUserInfo
+} from "@/utils/auth";
+import { getErrorMsg } from "@/utils/utils";
 // import MenuUtils from "@/utils/MenuUtils";
 import { mapGetters } from "vuex";
 import Square from "@/components/cubeShadow.vue";
@@ -228,9 +203,7 @@ export default {
       schoolList: [], //租户列表
       searchKey: "", //搜索
       data: {
-        userName: "",
-        password: "",
-        tenantId: ""
+        userName: "admin"
       },
       rules: {
         tenantId: [
@@ -265,19 +238,12 @@ export default {
         });
     },
     goLogin() {
-      let tenant = this.schoolList.find(value => {
-        return value.tenantName == this.searchKey;
-      });
-      let tenantId = tenant ? tenant.tenantId : "",
-        data = {
-          tenantId: tenantId,
+      let data = {
           loginAccount: this.data.userName,
-          passwd: this.data.password
         };
       this.$store.commit("SHOWLOADING");
       const person=new Person();
       person.userName = data.loginAccount;
-      person.password = data.passwd;
       logins(data)
         .then(res => {
           // console.log(res);
@@ -285,21 +251,8 @@ export default {
             // console.log(res)
             twoWeeksExchange(res.data.token, res.data.refreshToken);
             saveUserInfo(res.data.userId);
-            sysUserMenuList().then(response => {
-              // console.log(static_routes);
-              let static_routes = response.data;
-              // sessionStorage.setItem('menuList',JSON.stringify(response.data))
-              localStorage.setItem("menuList", JSON.stringify(static_routes));
-              // let routes = MenuUtils(response.data)
-              let routes = MenuUtils(static_routes);
-              // console.log(routes)
-              this.$store.commit("setAllMenu", routes);
-              this.$router.addRoutes(routes);
-              this.$router.replace("/course/list");
-            })
-            .then(()=>{
-              this.$store.commit("HIDELOADING");
-            })
+            this.$store.commit("HIDELOADING");
+            this.$router.replace("/course/list");
           } else {
             this.$message({
               message: getErrorMsg(res.msg),

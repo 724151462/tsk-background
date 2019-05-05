@@ -28,266 +28,38 @@ export const constantRouterMap = [
     path: '*',
     component: _import('errorPage/404'),
   },
-  // {
-  //   path: '/course',    // 访问路径
-  //   component: Header,  // 组件
-  //   name: '课程中心',    // 页面名称
-  //   level: 1,           // 路由等级，用来判断是否是头部（一级）导航
-  //   menuShow: true,     // 是否显示于侧边栏
-  //   // type: 'courseCenter',
-  //   redirect: '/course/list', // 重定向
-  //   children: [{        // 子路由
-  //       path: '/course/list',
-  //       component: Layout,
-  //       name: '课程列表',
-  //       leaf: true,
-  //       menuShow: true,
-  //       children: [{
-  //           path: '/course/list',
-  //           component: _import('course/list'),
-  //           name: '课程列表',
-  //           meta:{
-  //             father: '课程中心'
-  //           }
-  //         },
-  //         {
-  //           path: '/course/addCourse',
-  //           component: _import('course/addCourse'),
-  //           name: '课程编辑'
-  //         },
-  //         {
-  //           path: '/course/list/chapter',
-  //           component: _import('course/courseMain'),
-  //           name: '课程列表',
-  //           leaf: true,
-  //           redirect: '/course/list/chapter',
-  //           children: [{
-  //               path: '/course/list/chapter',
-  //               component: _import('course/chapter'),
-  //               name: '章节内容',
-  //             },
-  //             {
-  //               path: '/course/list/interact',
-  //               component: _import('course/interact'),
-  //               name: '互动',
-  //             },
-  //             {
-  //               path: '/course/list/interact/vote',
-  //               component: _import('course/interactContent/vote'),
-  //               name: '发布投票',
-  //             },
-  //             {
-  //               path: '/course/list/interact/voteresult',
-  //               component: _import('course/interactContent/voteResult'),
-  //               name: '投票结果',
-  //             },
-  //             {
-  //               path: 'interact/brainstorm',
-  //               component: _import('course/interactContent/brainStorm'),
-  //               name: '发布头脑风暴',
-  //             },
-  //             {
-  //               path: '/course/list/interact/brainresult',
-  //               component: _import('course/interactContent/brainResult'),
-  //               name: '头脑风暴结果',
-  //             },
-  //             {
-  //               path: 'interact/homework',
-  //               component: _import('course/interactContent/homeWork'),
-  //               name: '作业/小组任务',
-  //             },
-  //             {
-  //               path: '/course/list/interact/homeworkresult',
-  //               component: _import('course/interactContent/workResult'),
-  //               name: '作业/小组任务结果',
-  //             },
-  //             {
-  //               path: 'interact/test',
-  //               component: _import('course/interactContent/test'),
-  //               name: '发布测试',
-  //             },
-  //             {
-  //               path: '/course/list/interact/testresult',
-  //               component: _import('course/interactContent/testResult'),
-  //               name: '测试结果',
-  //             },
-  //             {
-  //               path: '/course/list/member',
-  //               component: _import('course/member'),
-  //               name: '成员',
-  //             },
-  //             {
-  //               path: '/course/list/member/manage',
-  //               component: _import('course/memberContent/groupPlan'),
-  //               name: '成员方案管理',
-  //             },
-
-  //             {
-  //               path: '/course/list/teach',
-  //               component: _import('course/teach'),
-  //               name: '教学管理',
-  //               redirect: '/course/list/teach/grade',
-  //               children: [{
-  //                   path: '/course/list/teach/grade',
-  //                   component: _import('course/teachContent/grade'),
-  //                   name: '成绩管理',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/notes',
-  //                   component: _import('course/teachContent/notes'),
-  //                   name: '笔记管理',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/homework',
-  //                   component: _import('course/teachContent/homeworkList'),
-  //                   name: '作业管理',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/homeworkdetail',
-  //                   component: _import('course/teachContent/homeworkDetail'),
-  //                   name: '学生作业详情',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/storm',
-  //                   component: _import('course/teachContent/storm'),
-  //                   name: '头脑风暴',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/questionnaire',
-  //                   component: _import('course/teachContent/questionnaire'),
-  //                   name: '投票问卷',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/test',
-  //                   component: _import('course/teachContent/test'),
-  //                   name: '测试管理',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/testmark',
-  //                   component: _import('course/teachContent/testMark'),
-  //                   name: '测试成绩',
-  //                 },
-  //                 {
-  //                   path: '/course/list/teach/video',
-  //                   component: _import('course/teachContent/videos'),
-  //                   name: '视频',
-  //                 },
-  //               ]
-  //             },
-  //             {
-  //               path: '/course/list/notice',
-  //               component: _import('course/notice'),
-  //               name: '通知管理',
-  //             },
-  //             {
-  //               path: '/course/list/discuss',
-  //               component: _import('course/discuss'),
-  //               name: '讨论中心',
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: '/course/list/interact',
-  //           component: _import('course/courseMain'),
-  //           name: '互动',
-  //         },
-  //         {
-  //           path: '/course/list/member',
-  //           component: _import('course/courseMain'),
-  //           name: '成员',
-  //         },
-  //         {
-  //           path: '/course/list/teach',
-  //           component: _import('course/courseMain'),
-  //           name: '教学管理',
-  //           // redirect: '/course/list/teach/grade'
-  //         },
-  //         {
-  //           path: '/course/list/notice',
-  //           component: _import('course/courseMain'),
-  //           name: '通知管理',
-  //         },
-  //         {
-  //           path: '/course/list/discuss',
-  //           component: _import('course/courseMain'),
-  //           name: '讨论中心',
-  //         },
-  //         {
-  //           path: '/course/list/discuss/disinfo',
-  //           component: _import('course/discussDialog'),
-  //           name: '讨论详情',
-  //         },
-  //         {
-  //           path: '/course/list/interact/vote',
-  //           component: _import('course/interactContent/vote'),
-  //           name: '发布投票',
-  //         },
-  //         {
-  //           path: '/course/list/teach/grade',
-  //           component: _import('course/courseMain'),
-  //           name: '成绩',
-  //         },
-  //       ]
-  //     },
-  //     {
-  //       path: 'appraisal',
-  //       component: Layout,
-  //       name: '课程评价',
-  //       leaf: true,
-  //       menuShow: true,
-  //       redirect: '/appraisal/list',
-  //       children: [{
-  //         path: '/appraisal/list',
-  //         component: _import('course/appraisal'),
-  //         name: '课程评价',
-  //       }]
-  //     },
-  //     {
-  //       path: 'test',
-  //       component: Layout,
-  //       name: '试题管理',
-  //       children: [{
-  //           path: '/course/resource/test',
-  //           component: _import('course/resourse/test/test'),
-  //           name: '试题管理',
-  //           menuShow: true
-  //         },
-  //         {
-  //           path: '/course/resource/addtest/:catalog',
-  //           component: _import('course/resourse/test/addTest'),
-  //           name: '试题添加',
-  //         },
-  //         {
-  //           path: '/course/resource/edittest/:quiz',
-  //           component: _import('course/resourse/test/editTest'),
-  //           name: '试题编辑',
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'resource',
-  //       component: Layout,
-  //       name: '资源管理',
-  //       children: [{
-  //         path: '/course/resource/resource',
-  //         component: _import('course/resourse/resourse/resourse'),
-  //         name: '资源管理',
-  //         menuShow: true
-  //       }]
-  //     },
-  //     {
-  //       path: 'activity',
-  //       component: Layout,
-  //       name: '活动管理',
-  //       children: [{
-  //         path: '/course/activity/activity',
-  //         component: _import('course/resourse/activity/activity'),
-  //         name: '活动管理',
-  //         menuShow: true
-  //       }]
-  //     }
-  //   ],
-  // },
+  {
+    path: '/course',    // 访问路径
+    component: Header,  // 组件
+    name: '课程中心',    // 页面名称
+    level: 1,           // 路由等级，用来判断是否是头部（一级）导航
+    menuShow: true,     // 是否显示于侧边栏
+    // type: 'courseCenter',
+    redirect: '/course/list', // 重定向
+    children: [{        // 子路由
+        path: '/course/list',
+        component: Layout,
+        name: '课程列表',
+        isLeaf: true,
+        menuShow: true,
+        children: [{
+          path: '/course/list',
+          component: _import('course/list'),
+          name: '课程列表',
+          meta:{
+            father: '课程中心'
+          }
+        }]
+      },
+      {        // 子路由
+        path: '/course/test',
+        component: Layout,
+        name: '课程测试',
+        isLeaf: true,
+        menuShow: true,
+      },
+    ]
+  },
   // {
   //   path: '/learn',
   //   component: Header,
