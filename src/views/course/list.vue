@@ -11,89 +11,6 @@
           <el-button type="primary" style="position: relative;right: 68px;border-radius: 0" @click="getList">搜索</el-button>
         </div>
       </el-row>
-
-      <el-row>
-        <el-card class="box-card" style="margin-bottom: 10px" v-for="list in data" :key="list.id" shadow="hover">
-          <div class="course-table">
-            <div class="img">
-              <span class="tib">{{courseStatus(list.courseStatus)}}</span>
-              <img :src="list.courseCover" height="">
-            </div>
-            <div class="center">
-              <div class="title" style="margin-bottom:10px;font-weight:bold">{{list.courseName }}</div>
-              <div class="list">学生数：{{list.userCount}}人</div>
-              <div class="list">课程时间：{{list.beginTime}} ~ {{list.endTime}}</div>
-              <div class="list">所属学校：{{list.tenantName}}</div>
-              <div class="list">开放范围：{{Number(list.courseMode) === 10 ? '教师指定学员' : Number(list.courseMode) === 20 ? '本校学生' : Number(list.courseMode) === 30 ? '全部学员' : '' }}</div>
-            </div>
-            <div class="button">
-              <div class="top">
-                <a class="list" @click="upData(list.courseId)" v-if="list.courseStatus !== 40">编辑</a>
-                <a class="list" @click="copyCourse(list)" >复制</a>
-                <a class="list" @click="closeCourse(list.courseId)" v-if="list.courseStatus === 30">关闭</a>
-                <a class="list" v-else-if="list.courseStatus === 10" @click="release(list.courseId)">发布</a>
-                <a class="list" @click="deleteCourse(list.courseId)" v-if="list.courseStatus === 40 || list.courseStatus === 10">删除</a>
-              </div>
-              <el-button type="success" @click="goCourseModel(list.courseId)" v-if="list.courseStatus === 30">课堂模式</el-button>
-              <el-button type="primary" @click="goCourseChapter(list)">教学管理</el-button>
-            </div>
-          </div>
-
-        </el-card>
-        <div style="text-align:right;" v-show="data.length!=0">
-          <el-pagination
-              background
-              layout="prev, pager, next"
-              @current-change="goGetList"
-              :total="listQuery.total">
-          </el-pagination>
-        </div>
-      </el-row>
-
-      <!--弹出框-->
-
-      <el-dialog title="售卖" :visible.sync="isDialog">
-        <el-row>
-          <div>
-            <span>*</span>
-            <span>开课时间：</span>
-            <el-date-picker
-                v-model="sellTime"
-                type="datetimerange"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-                change="yesTimeSell"
-            >
-            </el-date-picker>
-          </div>
-          <div>
-            <span>*</span>
-            <span>选择学校：</span>
-<!--
-            <el-select v-model="value" placeholder="请选择学校">
-              <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-              </el-option>
-            </el-select>
--->
-          </div>
-        </el-row>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="isDialog = false">取 消</el-button>
-          <el-button type="primary" @click="isDialog = false">保 存</el-button>
-        </div>
-      </el-dialog>
-      <el-dialog title="复制课程" :visible.sync="copyDialog">
-        <el-input placeholder="输入课程名" v-model="copyCourseObj.courseName"></el-input>
-        <span slot="footer" class="dialog-footer">
-            <el-button @click="copyDialog = false">取 消</el-button>
-            <el-button type="primary" @click="ensureCopy">确 定</el-button>
-          </span>
-      </el-dialog>
     </div>
 </template>
 
@@ -122,12 +39,9 @@ export default {
     }
   },
   created () {
-    this.getList()
   },
   methods: {
     goGetList (e) {
-      this.listQuery.pageIndex = e
-      this.getList()
     },
     courseType(type = '') {
       type ? this.isActice = false : this.isActice = true
@@ -156,65 +70,6 @@ export default {
         }
       })
     },
-    deleteCourse(courseId) {
-      courseDel([courseId])
-      .then(response=> {
-        if(response.code === 200) {
-          this.$message({
-            message: '删除成功',
-            type: 'success'
-          })
-          this.getList()
-        }
-      })
-    },
-    copyCourse (course) {
-      let data = Object.assign({}, course)
-      this.copyCourseObj = data
-      this.copyCourseObj.courseName = this.copyCourseObj.courseName + '(复制)'
-      this.copyDialog = true
-      
-    },
-    ensureCopy() {
-      console.log(this.copyCourseObj)
-      let data = {
-        courseName: this.copyCourseObj.courseName,
-        courseId: this.copyCourseObj.courseId
-      }
-      copy(data)
-        .then(response=> {
-          if(response.code === 200) {
-            this.$message({
-              message: '复制成功',
-              type: 'success'
-            })
-            this.getList()
-            this.copyDialog = false
-          }
-      })
-    },
-    closeCourse(id) {
-      this.$store.commit(
-        'DELETECONFIRM',{
-          title: '提示',
-          message: '确认关闭课程?', 
-          fn:() => {
-            close(id)
-            .then(response=> {
-              if(response.code === 200) {
-                this.$message({
-                  message: '关闭成功',
-                  type: 'success'
-                })
-                this.getList()
-              }
-            })
-          }
-        }
-        
-      )
-      
-    },
     courseStatus (val) {
       let vals = Number(val)
       if (vals === 10) {
@@ -223,39 +78,6 @@ export default {
         return '已发布'
       } else if (vals === 40) {
         return '关闭'
-      }
-    },
-    yesTimeSell (e) {
-      console.log('确定了', e)
-    },
-    sell () {
-      this.isDialog = true
-    },
-    goCourseModel(e) {
-      this.$router.push({
-        path: '/course/classmodel',
-        query: {id: e}
-      })
-    },
-    goCourseChapter(e) {
-      sessionStorage.setItem('courseName', e.courseName)
-      console.log(e)
-      if(e.courseStatus === 40) {
-        this.$confirm('该课程已关闭，如添加内容可能造成学生成绩变动', '提示', {
-          confirmButtonText: '确认进入',
-          cancelButtonText: '再看看',
-          type: 'warning'
-        }).then(() => {
-          this.$router.push({
-            path: '/course/list/chapter',
-            query: {id: e.courseId}
-          })
-        })
-      }else{
-        this.$router.push({
-          path: '/course/list/chapter',
-          query: {id: e.courseId}
-        })
       }
     },
     goAddCourse (e) {

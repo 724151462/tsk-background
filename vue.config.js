@@ -4,7 +4,7 @@ function resolve (dir) {
 }
 module.exports = {
   // 基本路径
-  baseUrl: '/',
+  publicPath: '/',
   assetsDir: 'assets',
   // 输出文件目录
   outputDir: 'dist',
@@ -13,9 +13,6 @@ module.exports = {
   chainWebpack: (config) => {
     config.resolve.alias
       .set('@', resolve('src'))
-  },
-  configureWebpack: {
-    devtool: 'source-map'
   },
   devServer: {
 /*
@@ -28,8 +25,8 @@ module.exports = {
     proxy: {
       '/api': {
          // target: 'http://192.168.10.48:9008',
-        target: 'http://120.36.137.90:9010',
-        // target: 'https://api.tskedu.com',
+        // target: 'http://120.36.137.90:9010',
+        target: 'https://country.tskedu.com',
         secure: false,
         ws: true,
         changeOrigin: true

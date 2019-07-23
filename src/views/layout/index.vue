@@ -12,7 +12,7 @@
             height:100%;
             padding-top: 60px;
             border-right:1px solid #fff;
-            position: fixed"
+            position: fixed;background: #000"
       >
         <el-menu
           :default-active="activeIndex"
@@ -26,13 +26,13 @@
         >
           <template v-for="issue in nodes">
             <!-- 筛选出父级 -->
-            <template v-if="issue.name === $store.state.leftNavState">
+            <!-- <template v-if="issue.name === $store.state.leftNavState"> -->
               <template v-for="item in issue.children">
                 <!-- 菜单目录层 -->
                 <el-submenu v-if="!item.isLeaf" :index="String(item.menuId)" :key="item.menuId">
                   <template slot="title">
                     <i :class="item.iconCls"></i>
-                    <span slot="title">{{item}}</span>
+                    <span slot="title" style="color: #fff">{{item.name}}</span>
                   </template>
                   
                   <template v-for="term in item.children">
@@ -53,7 +53,7 @@
                   <span slot="title">{{item.name}}</span>
                 </el-menu-item>
               </template>
-            </template>
+            <!-- </template> -->
           </template>
         </el-menu>
       </el-aside>
@@ -80,6 +80,7 @@ export default {
     };
   },
   created() {
+    console.log(this.nodes)
   },
   methods: {
     handleOpen(...params) {
@@ -106,8 +107,29 @@ export default {
   height: 100%;
   width: 100%;
   background: #F6F7F9;
-  max-width: 1920px;
   margin: 0 auto;
 }
+.el-menu
+  background-color #202A2F
+.el-menu-item
+  color #fff
+  background-color #202A2F
+.el-submenu__title
+  background-color #202A2F
+.el-menu-item:focus, .el-menu-item:hover
+  background-color #000
+.el-submenu-item:focus, .el-menu-submenu:hover
+  background-color #000
+.el-submenu:focus, .el-submenu:hover
+  background-color #000
+.el-submenu:hover
+  background-color #000
+.el-submenu__title
+  color #fff
+.el-submenu__title:hover
+  background-color: #000 !important;
+
+.el-submenu__title:focus, .el-submenu__title:hover
+  background-color #000 !important
 </style>
 

@@ -10,15 +10,15 @@
       </div>
     </div>
     <div class="header">
-      <div style="display: flex;flex: 1;max-width: 1920px;margin: 0 auto;">
+      <div style="display: flex;flex: 1;justify-content: space-between; margin: 0 auto;">
         <router-link to="/course" class="login" style="text-align:center;">
           <!-- <img :src="require('@/assets/images/header_logo.png')" height="40px"> -->
           <span style="font-size: 30px">大国微农</span>
           <span style="margin-left: 10px">后台管理</span>
         </router-link>
-        <el-menu
+        <!-- <el-menu
           :default-active="defaultActiveIndex"
-          background-color="rgb(70,76,92)"
+          background-color="#263238"
           style="font-size:16px;flex:1;border-bottom:0"
           text-color="#fff"
           active-text-color="#fff"
@@ -26,13 +26,7 @@
           :router="true"
         >
           <el-menu-item :index="item.path" v-for="item in nav" :key="item.id">{{item.name}}</el-menu-item>
-          <!-- <el-menu-item index="/learn">学习管理</el-menu-item>
-          <el-menu-item index="/school">校管中心</el-menu-item>
-          <el-menu-item index="/system">系统管理</el-menu-item>-->
-          <!-- <el-menu-item v-for="(item,index) in $router.options.routes" v-if="item.type&&item.menuShow" :key="index" :index="item.children[0].path">
-          <i :class="item.iconCls"></i><span slot="title">{{item.name}}</span>
-          </el-menu-item>-->
-        </el-menu>
+        </el-menu> -->
         <el-dropdown class="avator" trigger="click">
           <span class="el-dropdown-link userinfo-inner">
             <el-badge
@@ -70,22 +64,6 @@
       </div>
     </div>
     <router-view></router-view>
-    <el-dialog
-      title="提示"
-      :visible.sync="nameDialog"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-      :show-close="false"
-      width="30%"
-    >
-      <p>初次登录，请重置您的用户名。</p>
-      <br>
-      <el-input v-model="nameInit" placeholder="用户名"></el-input>
-      <p style="color:#f95f5f;margin-top: 5px;">用户名为字母和数字的组合，可用于登录。</p>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="userNameInit">确 定</el-button>
-      </span>
-    </el-dialog>
   </div>
 </template>
 
@@ -251,7 +229,7 @@ export default {
   z-index: 120;
   width: 100%;
   height: 60px;
-  background: #464C5C;
+  background: #263238;
   display: flex;
   justify-content: space-between;
 
@@ -260,6 +238,7 @@ export default {
     font-size: 22px;
     line-height: 60px;
     width: 220px;
+    margin-left 20px;
 
     .sizes {
       font-size: 16px;
@@ -286,6 +265,8 @@ export default {
   }
 }
 
+.el-menu
+  background-color #263238
 .avator {
   display: flex;
   align-items: center;

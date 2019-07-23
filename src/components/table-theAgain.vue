@@ -70,7 +70,7 @@
         <template v-else-if="list.imgList">
           <el-table-column :width="list.width" :label="list.name" align="center" :key="index">
             <template scope="scope">
-              <img  :width="list.imgWidth" :src="scope.row[list.prop]" :key="index">
+              <img  :width="list.imgWidth" v-for="(item, i) in scope.row[list.prop]" :src="item" :key="i">
             </template>
           </el-table-column>
         </template>

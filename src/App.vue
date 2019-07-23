@@ -9,6 +9,7 @@
 </script>
 <style lang="stylus" type="text/stylus">
   @import "assets/css/reset.styl"
+  @import "assets/css/public.css"
     #app
       width: 100%
       height:100%
@@ -140,5 +141,10 @@
       min-height 200px !important
     .modelVote .el-textarea__inner
       min-height 200px !important
+  .el-submenu__title:hover
+    background-color: #000 !important;
+
+  .el-submenu__title:focus, .el-submenu__title:hover
+    background-color #000 !important
 </style>
 

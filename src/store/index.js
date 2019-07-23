@@ -43,7 +43,8 @@ const mutations = {
       type: 'warning'
     }).then(() => {
       data.fn()
-    }).catch(() => {
+    }).catch((err) => {
+      console.log(err)
       Globe_VM.$message({
         type: 'info',
         message: '已取消删除'
